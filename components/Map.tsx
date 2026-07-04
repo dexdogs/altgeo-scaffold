@@ -24,7 +24,6 @@ if (typeof document !== "undefined" && !document.getElementById("pulse-dot-style
   document.head.appendChild(style);
 }
 
-
 type Asset = {
   asset_id: string;
   name: string;
@@ -43,6 +42,26 @@ type Obs = {
 };
 
 function hasCoords(a: Asset): a is Asset & { latitude: number; longitude: number } {
+  return (
+    typeof a.latitude === "number" &&
+    typeof a.longitude === "number" &&
+    isFinite(a.latitude) &&
+    isFinite(a.longitude)
+  );
+}
+
+export default function Map({
+  assets,
+  observations,
+}: {
+  assets: Asset[];
+  observations: Obs[];
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const mapInstance = useRef<mapboxgl.Map | null>(null);
+  const [q, setQ] = useState("");
+  const [suggestions, setSuggestions] = useState<any[]>([]);
+
   const TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN as string;
 
   async function onType(v: string) {
@@ -74,29 +93,9 @@ function hasCoords(a: Asset): a is Asset & { latitude: number; longitude: number
           zoom: 10, essential: true,
         });
       },
-      () => {} // denied/unavailable: fail quietly
+      () => {}
     );
   }
-
-  return (
-    typeof a.latitude === "number" &&
-    typeof a.longitude === "number" &&
-    isFinite(a.latitude) &&
-    isFinite(a.longitude)
-  );
-}
-
-export default function Map({
-  assets,
-  observations,
-}: {
-  assets: Asset[];
-  observations: Obs[];
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const mapInstance = useRef<mapboxgl.Map | null>(null);
-  const [q, setQ] = useState("");
-  const [suggestions, setSuggestions] = useState<any[]>([]);
 
   useEffect(() => {
     if (!ref.current) return;
@@ -111,7 +110,6 @@ export default function Map({
     });
 
     map.on("style.load", () => {
-      // Black space behind the globe. Globe surface colors stay as-is.
       map.setFog({
         color: "rgb(0, 0, 0)",
         "high-color": "rgb(0, 0, 0)",
@@ -150,7 +148,6 @@ export default function Map({
         .addTo(map);
     });
 
-    // Never crash on un-pinnable rows: surface a count instead.
     if (skipped > 0) {
       const note = document.createElement("div");
       note.style.cssText =
