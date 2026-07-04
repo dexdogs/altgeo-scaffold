@@ -1,0 +1,7 @@
+observation_id,asset_id,metric_id,source_id,observed_at,ingested_at,value,confidence,raw_ref
+obs_001,asset_permian_001,co2e_stack,src_sat_carbon,2026-06-01T00:00:00Z,2026-06-02T00:00:00Z,12.4,0.82,raw/co2/001
+obs_002,asset_hoover_dam,water_stress,src_water_wri,2026-05-15T00:00:00Z,2026-05-16T00:00:00Z,0.71,0.9,raw/water/002
+obs_003,asset_dc_virginia,grid_load,src_grid_iso,2026-06-20T12:00:00Z,2026-06-20T12:05:00Z,48.5,0.95,raw/grid/003
+obs_004,asset_dc_virginia,pue,src_grid_iso,2026-06-20T12:00:00Z,2026-06-20T12:05:00Z,1.42,0.88,raw/grid/004
+obs_005,asset_solar_seville,heat_days,src_climate_haz,2026-01-01T00:00:00Z,2026-01-02T00:00:00Z,54,0.6,raw/heat/005
+obs_006,asset_permian_001,co2e_stack,src_sat_carbon,2026-06-08T00:00:00Z,2026-06-09T00:00:00Z,,0.4,raw/co2/006

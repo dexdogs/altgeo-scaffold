@@ -1,0 +1,73 @@
+{
+  "schema": "schema_core",
+  "version": "1.0.0",
+  "contract": "Frozen and additive-only. Extensions may add tables or nullable columns; they may never alter or remove anything below.",
+  "mandatory_fields": ["assets.asset_id", "assets.latitude", "assets.longitude", "observations.observation_id", "observations.asset_id"],
+  "na_token": "N/A",
+  "display_dash": "\u2014",
+  "tables": {
+    "sources": {
+      "pk": "source_id",
+      "fields": {
+        "source_id": {"type": "text", "pk": true},
+        "name": {"type": "text", "default": "N/A"},
+        "vendor": {"type": "text", "default": "N/A"},
+        "url": {"type": "text", "default": "N/A"},
+        "granularity": {"type": "text", "default": "N/A"},
+        "coverage": {"type": "text", "default": "N/A"},
+        "history_start": {"type": "text", "default": "N/A"},
+        "license": {"type": "text", "default": "N/A"},
+        "notes": {"type": "text", "default": "N/A"}
+      }
+    },
+    "metrics": {
+      "pk": "metric_id",
+      "fields": {
+        "metric_id": {"type": "text", "pk": true},
+        "name": {"type": "text", "default": "N/A"},
+        "unit": {"type": "text", "default": "N/A"},
+        "description": {"type": "text", "default": "N/A"},
+        "direction": {"type": "text", "default": "N/A", "enum": ["higher_bad", "higher_good", "neutral", "N/A"]}
+      }
+    },
+    "regions": {
+      "pk": "region_id",
+      "fields": {
+        "region_id": {"type": "text", "pk": true},
+        "name": {"type": "text", "default": "N/A"},
+        "level": {"type": "text", "default": "N/A"},
+        "parent_region": {"type": "text", "default": "N/A"}
+      }
+    },
+    "assets": {
+      "pk": "asset_id",
+      "fields": {
+        "asset_id": {"type": "text", "pk": true},
+        "name": {"type": "text", "default": "N/A"},
+        "asset_type": {"type": "text", "default": "N/A"},
+        "latitude": {"type": "numeric", "mandatory": true},
+        "longitude": {"type": "numeric", "mandatory": true},
+        "country": {"type": "text", "default": "N/A", "derived_from": ["latitude", "longitude"]},
+        "admin1": {"type": "text", "default": "N/A", "derived_from": ["latitude", "longitude"]},
+        "place_name": {"type": "text", "default": "N/A", "derived_from": ["latitude", "longitude"]},
+        "geocoded_at": {"type": "text", "default": "N/A"},
+        "region_id": {"type": "text", "default": "N/A", "soft_fk": "regions.region_id"},
+        "operator": {"type": "text", "default": "N/A"}
+      }
+    },
+    "observations": {
+      "pk": "observation_id",
+      "fields": {
+        "observation_id": {"type": "text", "pk": true},
+        "asset_id": {"type": "text", "fk": "assets.asset_id", "mandatory": true},
+        "metric_id": {"type": "text", "default": "N/A", "soft_fk": "metrics.metric_id"},
+        "source_id": {"type": "text", "default": "N/A", "soft_fk": "sources.source_id"},
+        "observed_at": {"type": "text", "default": "N/A"},
+        "ingested_at": {"type": "text", "default": "N/A"},
+        "value": {"type": "numeric", "nullable": true},
+        "confidence": {"type": "numeric", "nullable": true},
+        "raw_ref": {"type": "text", "default": "N/A"}
+      }
+    }
+  }
+}

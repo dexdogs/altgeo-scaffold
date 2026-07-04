@@ -1,0 +1,28 @@
+{
+  "name": "altgeo-scaffold",
+  "version": "1.0.0",
+  "description": "Reusable geospatial alt-data scaffold: Mapbox front end, adapter-swappable backend, schema_core contract.",
+  "private": false,
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "^14.2.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "mapbox-gl": "^3.5.0"
+  },
+  "optionalDependencies": {
+    "@supabase/supabase-js": "^2.45.0",
+    "pg": "^8.12.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0",
+    "@types/react": "^18.3.0",
+    "@types/node": "^20.14.0",
+    "@types/pg": "^8.11.0"
+  }
+}

@@ -1,0 +1,4 @@
+region_id,name,level,parent_region
+reg_us,United States,country,N/A
+reg_us_tx,Texas,state,reg_us
+reg_eu,European Union,country,N/A

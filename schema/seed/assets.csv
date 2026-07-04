@@ -1,0 +1,6 @@
+asset_id,name,asset_type,latitude,longitude,country,admin1,place_name,geocoded_at,region_id,operator
+asset_permian_001,Permian Gas Plant,plant,31.9686,-102.0779,N/A,N/A,N/A,N/A,reg_us_tx,Synthetic Energy Co
+asset_hoover_dam,Hoover Reservoir,reservoir,36.0161,-114.7377,N/A,N/A,N/A,N/A,reg_us,Synthetic Water Auth
+asset_dc_virginia,Ashburn Data Center,data_center,39.0438,-77.4874,N/A,N/A,N/A,N/A,reg_us,Synthetic Cloud Inc
+asset_solar_seville,Seville Solar Farm,solar,37.3891,-5.9845,N/A,N/A,N/A,N/A,reg_eu,Synthetic Solar SA
+asset_dc_offshore,Unlocated Facility,data_center,,,N/A,N/A,N/A,N/A,N/A,Synthetic Cloud Inc

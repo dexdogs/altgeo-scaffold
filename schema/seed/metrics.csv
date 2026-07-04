@@ -1,0 +1,6 @@
+metric_id,name,unit,description,direction
+co2e_stack,Stack CO2e flux,tCO2e/h,Satellite-derived stack emissions rate,higher_bad
+water_stress,Baseline water stress,ratio,Withdrawals / available supply,higher_bad
+grid_load,Grid load,MW,Instantaneous facility power draw,neutral
+heat_days,Extreme-heat days,days/yr,Days above local heat threshold,higher_bad
+pue,Power usage effectiveness,ratio,Data-center total power / IT power,higher_bad

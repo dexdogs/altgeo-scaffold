@@ -1,0 +1,5 @@
+source_id,name,vendor,url,granularity,coverage,history_start,license,notes
+src_sat_carbon,Orbital CO2 Feed,SkySpectra,https://example.com/co2,facility,global,2021-01-01,commercial,Synthetic placeholder
+src_water_wri,Aqueduct Water Stress,WRI,https://example.com/water,basin,global,2019-01-01,CC-BY,Synthetic placeholder
+src_grid_iso,ISO Grid Telemetry,GridPulse,N/A,facility,regional,2022-06-01,commercial,Synthetic placeholder
+src_climate_haz,Heat Hazard Model,ClimaModel,https://example.com/heat,10km-grid,global,2000-01-01,N/A,Synthetic placeholder
