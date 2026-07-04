@@ -128,10 +128,12 @@ export default function Map({
     });
 
     map.on("style.load", () => {
+      // Recolor the globe's water surface to deep midori.
+      try { map.setPaintProperty("water", "fill-color", "#1B5E4A"); } catch (e) {}
       map.setFog({
         color: "rgb(0, 0, 0)",
         "high-color": "rgb(0, 0, 0)",
-        "space-color": "#2E8B57",
+        "space-color": "rgb(0, 0, 0)",
         "horizon-blend": 0.02,
         "star-intensity": 0,
       });
