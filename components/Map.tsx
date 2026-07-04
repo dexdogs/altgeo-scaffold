@@ -131,7 +131,7 @@ export default function Map({
       map.setFog({
         color: "rgb(0, 0, 0)",
         "high-color": "rgb(0, 0, 0)",
-        "space-color": "rgb(0, 0, 0)",
+        "space-color": "#2E8B57",
         "horizon-blend": 0.02,
         "star-intensity": 0,
       });
@@ -187,7 +187,7 @@ export default function Map({
   };
 
   return (
-    <div style={{ width: "100%", height: "100vh", position: "relative" }}>
+    <div style={{ width: "100%", height: "calc(100vh - 48px)", position: "relative" }}>
       <div className="location-search-box" style={{ position: "absolute", top: 16, right: 16, zIndex: 10, width: 300, fontFamily: "system-ui, sans-serif" }}>
         <div style={{ display: "flex", gap: 6 }}>
           <input

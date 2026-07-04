@@ -12,7 +12,7 @@ export default async function Page() {
     db.listObservations(),
   ]);
   return (
-    <div style={{ display: "flex", width: "100%", height: "100vh" }}>
+    <div style={{ display: "flex", width: "100%", height: "calc(100vh - 48px)" }}>
       <Dashboard assets={assets as any} observations={observations as any} />
       <div style={{ flex: 1, position: "relative" }}>
         <SearchOverlay assets={assets as any} observations={observations as any} />

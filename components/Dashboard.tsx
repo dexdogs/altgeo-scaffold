@@ -80,12 +80,11 @@ export default function Dashboard({
 
   return (
     <aside style={{
-      width: 360, height: "100vh", overflowY: "auto", background: "#0a0a0a",
+      width: 360, height: "calc(100vh - 48px)", overflowY: "auto", background: "#0a0a0a",
       color: "#e5e7eb", padding: "20px 18px", boxSizing: "border-box",
       fontFamily: "system-ui, sans-serif", borderRight: "1px solid #1f2937",
     }}>
-      <h1 style={{ fontSize: 16, margin: "0 0 2px", letterSpacing: 0.3 }}>AltGeo Signal Monitor</h1>
-      <p style={{ fontSize: 11, color: "#6b7280", margin: "0 0 18px" }}>Synthetic placeholder data · dexdogs.earth</p>
+      
 
       <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 20 }}>
         <div style={heroCard}>
