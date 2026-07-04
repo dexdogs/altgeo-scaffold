@@ -10,7 +10,7 @@ export default function AppShell({
   const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <div style={{ display: "flex", width: "100%", height: "calc(100vh - 48px)", position: "relative" }}>
+    <div style={{ display: "flex", width: "100%", height: "calc(100vh - 48px)", position: "relative", overflow: "hidden" }}>
       <div style={{
         width: collapsed ? 0 : 360, transition: "width 0.25s ease",
         overflow: "hidden", flexShrink: 0, position: "relative",
@@ -29,9 +29,14 @@ export default function AppShell({
         )}
       </div>
 
-      <div style={{ flex: 1, position: "relative" }}>
-        <SearchOverlay assets={assets} observations={observations} />
-        <Map assets={assets} observations={observations} />
+      <div style={{ flex: 1, position: "relative", minWidth: 0 }}>
+        {/* search shifts right when collapsed so it clears the reopen arrow */}
+        <div style={{ position: "absolute", top: 0, left: collapsed ? 52 : 0, right: 0, bottom: 0, transition: "left 0.25s ease", pointerEvents: "none" }}>
+          <div style={{ pointerEvents: "auto" }}>
+            <SearchOverlay assets={assets} observations={observations} />
+          </div>
+        </div>
+        <Map assets={assets} observations={observations} collapsed={collapsed} />
         {collapsed && (
           <button onClick={() => setCollapsed(false)} title="Expand panel"
             style={{

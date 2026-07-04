@@ -62,9 +62,11 @@ const VISION_SECTIONS: { h: string; p: string }[] = [
 export default function Map({
   assets,
   observations,
+  collapsed,
 }: {
   assets: Asset[];
   observations: Obs[];
+  collapsed?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<mapboxgl.Map | null>(null);
@@ -129,11 +131,11 @@ export default function Map({
 
     map.on("style.load", () => {
       // Recolor the globe's water surface to deep midori.
-      try { map.setPaintProperty("water", "fill-color", "#1B5E4A"); } catch (e) {}
+      try { map.setPaintProperty("water", "fill-color", "#000000"); } catch (e) {}
       map.setFog({
         color: "rgb(0, 0, 0)",
         "high-color": "rgb(0, 0, 0)",
-        "space-color": "rgb(0, 0, 0)",
+        "space-color": "#1B5E4A",
         "horizon-blend": 0.02,
         "star-intensity": 0,
       });
@@ -179,6 +181,12 @@ export default function Map({
     mapInstance.current = map;
     return () => map.remove();
   }, [assets, observations]);
+
+  useEffect(() => {
+    // Mapbox keeps its old canvas size when the container resizes; force it.
+    const t = setTimeout(() => mapInstance.current?.resize(), 300);
+    return () => clearTimeout(t);
+  }, [collapsed]);
 
   const panelBox: React.CSSProperties = {
     position: "absolute", bottom: 64, left: 16, zIndex: 11, width: 380,
