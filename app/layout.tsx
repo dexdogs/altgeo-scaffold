@@ -7,7 +7,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <style>{`
           @font-face {
             font-family: "Bpdots";
-            src: url("/fonts/Bpdots.otf") format("opentype");
+            src: url("/fonts/bpdots.otf") format("opentype");
             font-weight: normal;
             font-style: normal;
             font-display: swap;
