@@ -80,7 +80,14 @@ export default function Map({
           ? `<table style="margin-top:6px;font-size:12px;border-collapse:collapse">${rows}</table>`
           : "");
 
-      new mapboxgl.Marker()
+      const el = document.createElement("div");
+      el.innerHTML =
+        '<svg width="20" height="28" viewBox="0 0 20 28" xmlns="http://www.w3.org/2000/svg">' +
+        '<path d="M10 0C4.5 0 0 4.5 0 10c0 7 10 18 10 18s10-11 10-18C20 4.5 15.5 0 10 0z" ' +
+        'fill="#000000"/></svg>';
+      el.style.cursor = "pointer";
+
+      new mapboxgl.Marker({ element: el, anchor: "bottom" })
         .setLngLat([a.longitude, a.latitude])
         .setPopup(new mapboxgl.Popup({ offset: 12 }).setHTML(html))
         .addTo(map);
