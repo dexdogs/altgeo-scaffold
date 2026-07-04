@@ -218,11 +218,11 @@ export default function Map({
       {/* bottom-left info + feedback tabs */}
       <div style={{ position: "absolute", bottom: 16, left: 16, zIndex: 12, display: "flex", gap: 8 }}>
         <button onClick={() => setPanel(panel === "info" ? null : "info")}
-          style={{ padding: "8px 14px", fontSize: 13, fontWeight: 600, border: "1px solid #374151", borderRadius: 8, background: "#111827", color: "#f9fafb", cursor: "pointer", boxShadow: "0 2px 10px rgba(0,0,0,.4)" }}>
+          style={{ padding: "8px 14px", fontSize: 13, fontWeight: 600, border: "1px solid #374151", borderRadius: 8, background: "#00A86B", color: "#052e1f", cursor: "pointer", boxShadow: "0 2px 10px rgba(0,0,0,.4)" }}>
           &#8505; Info
         </button>
         <button onClick={() => setPanel(panel === "feedback" ? null : "feedback")}
-          style={{ padding: "8px 14px", fontSize: 13, fontWeight: 600, border: "1px solid #374151", borderRadius: 8, background: "#111827", color: "#f9fafb", cursor: "pointer", boxShadow: "0 2px 10px rgba(0,0,0,.4)" }}>
+          style={{ padding: "8px 14px", fontSize: 13, fontWeight: 600, border: "1px solid #374151", borderRadius: 8, background: "#00A86B", color: "#052e1f", cursor: "pointer", boxShadow: "0 2px 10px rgba(0,0,0,.4)" }}>
           Feedback
         </button>
       </div>
