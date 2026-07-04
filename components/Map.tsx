@@ -3,6 +3,28 @@ import { useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
+const style = document.createElement("style");
+style.textContent = `
+  .pulse-dot {
+    width: 12px; height: 12px; border-radius: 50%;
+    background: #000; position: relative;
+  }
+  .pulse-dot::before {
+    content: ""; position: absolute; inset: 0;
+    border-radius: 50%; background: #000;
+    animation: pulse 2s ease-out infinite;
+  }
+  @keyframes pulse {
+    0%   { transform: scale(1);   opacity: 0.7; }
+    100% { transform: scale(3);   opacity: 0;   }
+  }
+`;
+if (typeof document !== "undefined" && !document.getElementById("pulse-dot-style")) {
+  style.id = "pulse-dot-style";
+  document.head.appendChild(style);
+}
+
+
 type Asset = {
   asset_id: string;
   name: string;
@@ -81,13 +103,10 @@ export default function Map({
           : "");
 
       const el = document.createElement("div");
-      el.innerHTML =
-        '<svg width="20" height="28" viewBox="0 0 20 28" xmlns="http://www.w3.org/2000/svg">' +
-        '<path d="M10 0C4.5 0 0 4.5 0 10c0 7 10 18 10 18s10-11 10-18C20 4.5 15.5 0 10 0z" ' +
-        'fill="#000000"/></svg>';
+      el.className = "pulse-dot";
       el.style.cursor = "pointer";
 
-      new mapboxgl.Marker({ element: el, anchor: "bottom" })
+      new mapboxgl.Marker({ element: el, anchor: "center" })
         .setLngLat([a.longitude, a.latitude])
         .setPopup(new mapboxgl.Popup({ offset: 12 }).setHTML(html))
         .addTo(map);
