@@ -47,6 +47,18 @@ export default function Map({
       style: "mapbox://styles/mapbox/light-v11",
       center: [-40, 30],
       zoom: 1.4,
+      projection: "globe",
+    });
+
+    map.on("style.load", () => {
+      // Black space behind the globe. Globe surface colors stay as-is.
+      map.setFog({
+        color: "rgb(0, 0, 0)",
+        "high-color": "rgb(0, 0, 0)",
+        "space-color": "rgb(0, 0, 0)",
+        "horizon-blend": 0.02,
+        "star-intensity": 0,
+      });
     });
 
     const pinned = assets.filter(hasCoords);
@@ -86,5 +98,5 @@ export default function Map({
     return () => map.remove();
   }, [assets, observations]);
 
-  return <div ref={ref} style={{ width: "100%", height: "100vh", position: "relative" }} />;
+  return <div ref={ref} style={{ width: "100%", height: "100vh", position: "relative", background: "#000" }} />;
 }
