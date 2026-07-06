@@ -3,6 +3,7 @@ import { useState } from "react";
 import Map from "./Map";
 import Dashboard from "./Dashboard";
 import SearchOverlay from "./SearchOverlay";
+import EvidenceBar from "./EvidenceBar";
 
 export default function AppShell({
   assets, observations,
@@ -29,7 +30,8 @@ export default function AppShell({
         )}
       </div>
 
-      <div style={{ flex: 1, position: "relative", minWidth: 0 }}>
+      <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column" }}>
+        <div style={{ flex: 1, position: "relative" }}>
         {/* search shifts right when collapsed so it clears the reopen arrow */}
         <div style={{ position: "absolute", top: 0, left: collapsed ? 52 : 0, right: 0, bottom: 0, transition: "left 0.25s ease", pointerEvents: "none" }}>
           <div style={{ pointerEvents: "auto" }}>
@@ -49,6 +51,8 @@ export default function AppShell({
             &#8250;
           </button>
         )}
+      </div>
+        <EvidenceBar assets={assets} observations={observations} />
       </div>
     </div>
   );
