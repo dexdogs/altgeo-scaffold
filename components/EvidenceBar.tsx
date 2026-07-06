@@ -53,7 +53,7 @@ export default function EvidenceBar({
 
   return (
     <div style={{ fontFamily: "system-ui, sans-serif", position: "relative" }}>
-      <div style={{ height: 92, background: "#0a0a0a", borderTop: "1px solid #1f2937", padding: "10px 16px", boxSizing: "border-box", position: "relative" }}>
+      <div style={{ height: 112, background: "#0a0a0a", borderTop: "1px solid #1f2937", padding: "10px 16px", boxSizing: "border-box", position: "relative" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
           <span style={{ fontSize: 11, color: "#9ca3af", textTransform: "uppercase", letterSpacing: 0.5 }}>Evidence chain &middot; freshness timeline</span>
           <span style={{ fontSize: 11, color: "#6b7280" }}>{pct}% full chain &middot; {observations.length} obs &middot; click a tick to trace</span>
@@ -80,7 +80,7 @@ export default function EvidenceBar({
       </div>
 
       {anchor && (
-        <div style={{ position: "absolute", bottom: 92, left: 0, right: 0, height: 300, background: "#0a0a0a", borderTop: "1px solid #1f2937", padding: "14px 18px", boxSizing: "border-box", zIndex: 30, boxShadow: "0 -8px 30px rgba(0,0,0,.5)", color: "#e5e7eb" }}>
+        <div style={{ position: "absolute", bottom: 112, left: 0, right: 0, height: 300, background: "#0a0a0a", borderTop: "1px solid #1f2937", padding: "14px 18px", boxSizing: "border-box", zIndex: 30, boxShadow: "0 -8px 30px rgba(0,0,0,.5)", color: "#e5e7eb" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
             <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
               <strong style={{ fontSize: 13 }}>Evidence trace &middot; {anchor.observation_id}</strong>
