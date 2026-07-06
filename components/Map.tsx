@@ -197,7 +197,7 @@ export default function Map({
   };
 
   return (
-    <div style={{ width: "100%", height: "calc(100vh - 48px)", position: "relative" }}>
+    <div style={{ width: "100%", height: "100%", position: "relative" }}>
       <div className="location-search-box" style={{ position: "absolute", top: 16, right: 16, zIndex: 10, width: 300, fontFamily: "system-ui, sans-serif" }}>
         <div style={{ display: "flex", gap: 6 }}>
           <input
