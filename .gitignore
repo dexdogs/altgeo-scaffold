@@ -7,3 +7,6 @@ node_modules/
 next-env.d.ts
 deploy_*.sh
 tsconfig.tsbuildinfo
+deploy_*.sh
+tsconfig.tsbuildinfo
+*.bak
