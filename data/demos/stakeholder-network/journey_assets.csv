@@ -1,11 +1,11 @@
 asset_id,name,latitude,longitude,domain
-AST_J01,Lagos Genset Cluster,6.455,3.3841,industrial_emissions
-AST_J02,Nairobi Cookstove Program,-1.2921,36.8219,clean_cooking
-AST_J03,Rotterdam Cement Plant,51.9244,4.4777,construction
-AST_J04,Gujarat Flare Capture,22.2587,71.1924,industrial_emissions
-AST_J05,Accra Biomass Stoves,5.6037,-0.187,clean_cooking
-AST_J06,Texas Batch Plant,31.9686,-99.9018,construction
-AST_J07,Jakarta Power Genset,-6.2088,106.8456,industrial_emissions
-AST_J08,Kigali Clean Cooking,-1.9706,30.1044,clean_cooking
-AST_J09,Ohio Steel Mill,40.4173,-82.9071,construction
-AST_J10,Chennai Refinery Stack,13.0827,80.2707,industrial_emissions
+AST_J01,Houston Refinery Complex,29.7604,-95.3698,industrial_emissions
+AST_J02,Gary Steel Works,41.5934,-87.3464,construction
+AST_J03,Detroit Auto Stamping,42.3314,-83.0458,construction
+AST_J04,Los Angeles Port Genset,33.7405,-118.2723,industrial_emissions
+AST_J05,Baytown Chemical Plant,29.7355,-94.9774,industrial_emissions
+AST_J06,Pittsburgh Coke Battery,40.4406,-79.9959,construction
+AST_J07,Chicago Cement Terminal,41.8781,-87.6298,construction
+AST_J08,Cleveland Blast Furnace,41.4993,-81.6944,industrial_emissions
+AST_J09,Birmingham Foundry,33.5186,-86.8104,construction
+AST_J10,Bakersfield Flare Site,35.3733,-119.0187,industrial_emissions

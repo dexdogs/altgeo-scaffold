@@ -1,16 +1,11 @@
-asset_id,name,asset_type,latitude,longitude,country,admin1,place_name,geocoded_at,region_id,operator
-asset_permian_001,Permian Gas Plant,plant,31.9686,-102.0779,N/A,N/A,N/A,N/A,reg_us_tx,Synthetic Energy Co
-asset_hoover_dam,Hoover Reservoir,reservoir,36.0161,-114.7377,N/A,N/A,N/A,N/A,reg_us,Synthetic Water Auth
-asset_dc_virginia,Ashburn Data Center,data_center,39.0438,-77.4874,N/A,N/A,N/A,N/A,reg_us,Synthetic Cloud Inc
-asset_solar_seville,Seville Solar Farm,solar,37.3891,-5.9845,N/A,N/A,N/A,N/A,reg_eu,Synthetic Solar SA
-asset_dc_offshore,Unlocated Facility,data_center,,,N/A,N/A,N/A,N/A,N/A,Synthetic Cloud Inc
-AST_J01,Lagos Genset Cluster,industrial_emissions,6.4550,3.3841,Nigeria,Lagos,Lagos,RG_WAF,Climate Impact Partners
-AST_J02,Nairobi Cookstove Program,clean_cooking,-1.2921,36.8219,Kenya,Nairobi,Nairobi,RG_EAF,Key Carbon
-AST_J03,Rotterdam Cement Plant,construction,51.9244,4.4777,Netherlands,South Holland,Rotterdam,RG_EU,Holcim
-AST_J04,Gujarat Flare Capture,industrial_emissions,22.2587,71.1924,India,Gujarat,Gujarat,RG_SAS,Climate Impact Partners
-AST_J05,Accra Biomass Stoves,clean_cooking,5.6037,-0.1870,Ghana,Greater Accra,Accra,RG_WAF,BURN Manufacturing
-AST_J06,Texas Batch Plant,construction,31.9686,-99.9018,USA,Texas,Texas,RG_NAM,Nucor
-AST_J07,Jakarta Power Genset,industrial_emissions,-6.2088,106.8456,Indonesia,Jakarta,Jakarta,RG_SEA,Climate Impact Partners
-AST_J08,Kigali Clean Cooking,clean_cooking,-1.9706,30.1044,Rwanda,Kigali,Kigali,RG_EAF,Key Carbon
-AST_J09,Ohio Steel Mill,construction,40.4173,-82.9071,USA,Ohio,Ohio,RG_NAM,Nucor
-AST_J10,Chennai Refinery Stack,industrial_emissions,13.0827,80.2707,India,Tamil Nadu,Chennai,RG_SAS,Climate Impact Partners
+asset_id,name,asset_type,latitude,longitude,country,admin1,place_name,region_id,operator
+AST_J01,Houston Refinery Complex,industrial_emissions,29.7604,-95.3698,USA,TX,Houston,RG_NAM,Climate Impact Partners
+AST_J02,Gary Steel Works,construction,41.5934,-87.3464,USA,IN,Gary,RG_NAM,Nucor
+AST_J03,Detroit Auto Stamping,construction,42.3314,-83.0458,USA,MI,Detroit,RG_NAM,Nucor
+AST_J04,Los Angeles Port Genset,industrial_emissions,33.7405,-118.2723,USA,CA,Los Angeles,RG_NAM,Climate Impact Partners
+AST_J05,Baytown Chemical Plant,industrial_emissions,29.7355,-94.9774,USA,TX,Baytown,RG_NAM,Climate Impact Partners
+AST_J06,Pittsburgh Coke Battery,construction,40.4406,-79.9959,USA,PA,Pittsburgh,RG_NAM,Nucor
+AST_J07,Chicago Cement Terminal,construction,41.8781,-87.6298,USA,IL,Chicago,RG_NAM,Nucor
+AST_J08,Cleveland Blast Furnace,industrial_emissions,41.4993,-81.6944,USA,OH,Cleveland,RG_NAM,Climate Impact Partners
+AST_J09,Birmingham Foundry,construction,33.5186,-86.8104,USA,AL,Birmingham,RG_NAM,Nucor
+AST_J10,Bakersfield Flare Site,industrial_emissions,35.3733,-119.0187,USA,CA,Bakersfield,RG_NAM,Climate Impact Partners
