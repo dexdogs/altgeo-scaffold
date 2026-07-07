@@ -2,7 +2,7 @@
 
 A reusable, end-to-end template for geospatial alternative-data applications. The **structure is the product**, not any single dataset — any environmental/alt-data domain (carbon, water, energy load, climate hazard, data-center footprint) drops into this skeleton with minimal rework.
 
-> All data in this repository is **synthetic placeholder content**, labeled as such. The current demo uses ten synthetic US facilities.
+> All data in this repository is **synthetic placeholder content**, labeled as such.
 
 ---
 
