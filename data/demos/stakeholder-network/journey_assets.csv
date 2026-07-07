@@ -1,11 +1,11 @@
 asset_id,name,latitude,longitude,domain
-AST_01,Lagos Genset Cluster,6.455,3.3841,industrial_emissions
-AST_02,Nairobi Cookstove Program,-1.2921,36.8219,clean_cooking
-AST_03,Rotterdam Cement Plant,51.9244,4.4777,construction
-AST_04,Gujarat Flare Capture,22.2587,71.1924,industrial_emissions
-AST_05,Accra Biomass Stoves,5.6037,-0.187,clean_cooking
-AST_06,Texas Batch Plant,31.9686,-99.9018,construction
-AST_07,Jakarta Power Genset,-6.2088,106.8456,industrial_emissions
-AST_08,Kigali Clean Cooking,-1.9706,30.1044,clean_cooking
-AST_09,Ohio Steel Mill,40.4173,-82.9071,construction
-AST_10,Chennai Refinery Stack,13.0827,80.2707,industrial_emissions
+AST_J01,Lagos Genset Cluster,6.455,3.3841,industrial_emissions
+AST_J02,Nairobi Cookstove Program,-1.2921,36.8219,clean_cooking
+AST_J03,Rotterdam Cement Plant,51.9244,4.4777,construction
+AST_J04,Gujarat Flare Capture,22.2587,71.1924,industrial_emissions
+AST_J05,Accra Biomass Stoves,5.6037,-0.187,clean_cooking
+AST_J06,Texas Batch Plant,31.9686,-99.9018,construction
+AST_J07,Jakarta Power Genset,-6.2088,106.8456,industrial_emissions
+AST_J08,Kigali Clean Cooking,-1.9706,30.1044,clean_cooking
+AST_J09,Ohio Steel Mill,40.4173,-82.9071,construction
+AST_J10,Chennai Refinery Stack,13.0827,80.2707,industrial_emissions

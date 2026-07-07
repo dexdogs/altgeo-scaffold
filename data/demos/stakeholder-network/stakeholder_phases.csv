@@ -1,5 +1,5 @@
 phase_id,phase_order,name,focus,data_state,color_hex
 PH_PREFLIGHT,1,Pre-Flight,Foundation and rules encoded before any pulse exists,pre-existence,#4A90D9
 PH_BIRTH,2,Birth,Physical event digitized and indexed (Digital Birth Certificate),raw_observation,#3FB950
-PH_MATURATION,3,Maturation,Calculated to CO2e audited packaged into a credit,derived_asset,#E3B341
-PH_EXIT,4,Exit,Traded claimed and retired,terminal,#DA5B5B
+PH_MATURATION,3,Maturation,Calculated to CO2e, audited, packaged into a credit,derived_asset,#E3B341
+PH_EXIT,4,Exit,Traded, claimed, and retired,terminal,#DA5B5B

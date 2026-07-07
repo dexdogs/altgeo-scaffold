@@ -73,6 +73,9 @@ export default function Map({
   const [q, setQ] = useState("");
   const [suggestions, setSuggestions] = useState<any[]>([]);
   const [panel, setPanel] = useState<null | "info" | "feedback">(null);
+  const [journeyAsset, setJourneyAsset] = useState<string | null>(null);
+  const [journey, setJourney] = useState<any>(null);
+  const [journeyErr, setJourneyErr] = useState<string | null>(null);
   const [fbName, setFbName] = useState("");
   const [fbMsg, setFbMsg] = useState("");
 
@@ -164,6 +167,13 @@ export default function Map({
       el.className = "pulse-dot";
       el.style.cursor = "pointer";
 
+      const assetId = a.asset_id;
+      el.addEventListener("click", (ev) => {
+        ev.stopPropagation();
+        setPanel(null);
+        setJourneyAsset(assetId);
+      });
+
       new mapboxgl.Marker({ element: el, anchor: "center" })
         .setLngLat([a.longitude, a.latitude])
         .setPopup(new mapboxgl.Popup({ offset: 12 }).setHTML(html))
@@ -187,6 +197,15 @@ export default function Map({
     const t = setTimeout(() => mapInstance.current?.resize(), 300);
     return () => clearTimeout(t);
   }, [collapsed]);
+
+  useEffect(() => {
+    if (!journeyAsset) { setJourney(null); setJourneyErr(null); return; }
+    setJourney(null); setJourneyErr(null);
+    fetch(`/api/journey/${journeyAsset}`)
+      .then((r) => (r.ok ? r.json() : r.json().then((e) => Promise.reject(e.error))))
+      .then(setJourney)
+      .catch((e) => setJourneyErr(String(e)));
+  }, [journeyAsset]);
 
   const panelBox: React.CSSProperties = {
     position: "absolute", bottom: 64, left: 16, zIndex: 11, width: 380,
@@ -276,6 +295,54 @@ export default function Map({
           <p style={{ fontSize: 10, color: "#6b7280", margin: "8px 0 0" }}>
             Opens your email app addressed to ankur@dexdogs.earth
           </p>
+        </div>
+      )}
+
+      {journeyAsset && (
+        <div style={{ ...panelBox, right: 16, left: "auto", width: 360 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "start" }}>
+            <h2 style={{ fontSize: 16, margin: "0 0 4px" }}>Data Journey</h2>
+            <button onClick={() => setJourneyAsset(null)} style={{ background: "none", border: "none", color: "#6b7280", fontSize: 18, cursor: "pointer", lineHeight: 1 }}>&times;</button>
+          </div>
+
+          {journeyErr && <p style={{ fontSize: 12, color: "#DA5B5B" }}>Journey unavailable: {journeyErr}</p>}
+          {!journey && !journeyErr && <p style={{ fontSize: 12, color: "#6b7280" }}>Loading journey…</p>}
+
+          {journey && (
+            <>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 14 }}>
+                <span style={{ fontSize: 14, fontWeight: 600 }}>{journey.observation.name}</span>
+                <span style={{ fontSize: 11, color: "#00A86B", textTransform: "uppercase", letterSpacing: 0.5 }}>{journey.observation.domain}</span>
+              </div>
+
+              <div style={{ display: "flex", alignItems: "center", marginBottom: 16 }}>
+                {journey.panel.map((p: any, i: number) => (
+                  <div key={p.phase_id} style={{ display: "flex", alignItems: "center", flex: i < journey.panel.length - 1 ? 1 : "0 0 auto" }}>
+                    <div style={{ width: 13, height: 13, borderRadius: "50%", border: `2px solid ${p.color_hex}`, background: p.reached ? p.color_hex : "transparent", opacity: p.reached ? 1 : 0.4, flexShrink: 0 }} />
+                    <span style={{ fontSize: 10, marginLeft: 5, color: p.reached ? p.color_hex : "#6b7280", fontWeight: p.reached ? 700 : 400, whiteSpace: "nowrap" }}>{p.name}</span>
+                    {i < journey.panel.length - 1 && (
+                      <div style={{ height: 2, flex: 1, margin: "0 6px", background: p.reached ? p.color_hex : "#2a2a2a", opacity: p.reached ? 0.8 : 0.4 }} />
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              <div style={{ display: "flex", flexDirection: "column", gap: 6, marginBottom: 12 }}>
+                {journey.steps.map((s: any) => (
+                  <div key={s.edge_id} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 12, opacity: s.render.opacity }}>
+                    <span style={{ width: 8, height: 8, borderRadius: "50%", background: s.color_hex, flexShrink: 0 }} />
+                    <span style={{ minWidth: 116, fontWeight: s.reached ? 600 : 400, color: s.reached ? "#e5e7eb" : "#9ca3af" }}>{s.relationship_name}</span>
+                    <span style={{ fontSize: 10, color: "#6b7280", marginLeft: "auto" }}>{s.source.role} &rarr; {s.target.role}</span>
+                    {s.flow_type === "bi_directional" && <span style={{ fontSize: 11, color: "#9ca3af" }}>&#8646;</span>}
+                  </div>
+                ))}
+              </div>
+
+              <p style={{ fontSize: 10, color: "#6b7280", borderTop: "1px solid #1f2937", paddingTop: 8, margin: 0 }}>
+                {journey.stakeholders_touched.length} stakeholders engaged &middot; {journey.steps.filter((s: any) => s.reached).length}/{journey.steps.length} steps complete
+              </p>
+            </>
+          )}
         </div>
       )}
 
