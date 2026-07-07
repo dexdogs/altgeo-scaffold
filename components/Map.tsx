@@ -67,10 +67,12 @@ export default function Map({
   assets,
   observations,
   collapsed,
+  onSelectAsset,
 }: {
   assets: Asset[];
   observations: Obs[];
   collapsed?: boolean;
+  onSelectAsset?: (assetId: string) => void;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<mapboxgl.Map | null>(null);
@@ -183,6 +185,7 @@ export default function Map({
         ev.stopPropagation();
         setPanel(null);
         setJourneyAsset(assetId);
+        onSelectAsset?.(assetId);
       });
 
       new mapboxgl.Marker({ element: el, rotationAlignment: "map", pitchAlignment: "map" })

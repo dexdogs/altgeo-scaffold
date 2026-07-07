@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const MIDORI = "#00A86B";
 const AMBER = "#d99a00";
@@ -11,7 +11,7 @@ type Obs = {
   source_id?: string; observed_at?: string; ingested_at?: string;
   value: number | string | null; raw_ref?: string;
 };
-type Asset = { asset_id: string; name: string };
+type Asset = { asset_id: string; name: string; asset_type?: string };
 
 function ok(v?: string) { return !!v && v !== "N/A" && v !== DASH; }
 function chainClass(o: Obs): "full" | "partial" | "none" {
@@ -34,10 +34,28 @@ function lagDays(o: Obs): number | null {
 }
 
 export default function EvidenceBar({
-  assets, observations,
-}: { assets: Asset[]; observations: Obs[] }) {
+  assets, observations, selectedAsset, onSelectAsset,
+}: { assets: Asset[]; observations: Obs[]; selectedAsset?: string | null; onSelectAsset?: (id: string | null) => void }) {
   const [anchor, setAnchor] = useState<Obs | null>(null);
   const [panelView, setPanelView] = useState<"dag" | "sankey">("dag");
+  const [scope, setScope] = useState<"asset" | "type">("asset");
+
+  // Look up the type of the currently selected asset (for the "all of this type" toggle).
+  const selType = selectedAsset ? assets.find((a) => a.asset_id === selectedAsset)?.asset_type : undefined;
+  // Is this observation part of the current globe selection (asset-scope or type-scope)?
+  const inSelection = (o: Obs) => {
+    if (!selectedAsset) return false;
+    if (scope === "asset") return o.asset_id === selectedAsset;
+    const t = assets.find((a) => a.asset_id === o.asset_id)?.asset_type;
+    return t !== undefined && t === selType;
+  };
+
+  // When an asset is clicked on the globe, auto-anchor to its observation and open the DAG.
+  useEffect(() => {
+    if (!selectedAsset) return;
+    const match = observations.find((o) => o.asset_id === selectedAsset);
+    if (match) { setAnchor(match); setPanelView("dag"); }
+  }, [selectedAsset, observations]);
 
   const times = observations.map((o) => ts(o.observed_at)).filter((t): t is number => t !== null);
   const min = times.length ? Math.min(...times) : 0;
@@ -56,7 +74,22 @@ export default function EvidenceBar({
       <div style={{ height: 112, background: "#0a0a0a", borderTop: "1px solid #1f2937", padding: "10px 16px", boxSizing: "border-box", position: "relative" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
           <span style={{ fontSize: 11, color: "#9ca3af", textTransform: "uppercase", letterSpacing: 0.5 }}>Evidence chain &middot; freshness timeline</span>
-          <span style={{ fontSize: 11, color: "#6b7280" }}>{pct}% full chain &middot; {observations.length} obs &middot; click a tick to trace</span>
+          <span style={{ fontSize: 11, color: "#6b7280", display: "flex", gap: 8, alignItems: "center" }}>
+            {selectedAsset ? (
+              <>
+                <span style={{ color: "#00A86B" }}>showing: {assetName(selectedAsset)}</span>
+                {selType && (
+                  <span style={{ display: "inline-flex", border: "1px solid #374151", borderRadius: 6, overflow: "hidden" }}>
+                    <button onClick={() => setScope("asset")} style={{ fontSize: 10, padding: "2px 7px", border: "none", cursor: "pointer", background: scope === "asset" ? "#00A86B" : "#111827", color: scope === "asset" ? "#052e1f" : "#9ca3af" }}>This asset</button>
+                    <button onClick={() => setScope("type")} style={{ fontSize: 10, padding: "2px 7px", border: "none", cursor: "pointer", background: scope === "type" ? "#00A86B" : "#111827", color: scope === "type" ? "#052e1f" : "#9ca3af" }}>All {selType}</button>
+                  </span>
+                )}
+                <button onClick={() => { onSelectAsset?.(null); setAnchor(null); }} style={{ fontSize: 10, padding: "2px 7px", border: "1px solid #374151", borderRadius: 6, cursor: "pointer", background: "#111827", color: "#9ca3af" }}>clear &times;</button>
+              </>
+            ) : (
+              <>{pct}% full chain &middot; {observations.length} obs &middot; click an asset or tick to trace</>
+            )}
+          </span>
         </div>
         <div style={{ position: "relative", height: 40, marginTop: 4 }}>
           <div style={{ position: "absolute", top: 20, left: 0, right: 0, height: 1, background: "#1f2937" }} />
@@ -65,12 +98,13 @@ export default function EvidenceBar({
             const left = xPct(o);
             const whisker = lag !== null ? Math.min(lag * 4, 40) : 0;
             const isAnchor = anchor?.observation_id === o.observation_id;
+            const selected = inSelection(o);
             return (
               <div key={o.observation_id} style={{ position: "absolute", top: 0, left: `${left}%`, transform: "translateX(-50%)" }}>
                 {whisker > 0 && (<div style={{ position: "absolute", top: 20, left: "50%", width: whisker, height: 1, background: "#374151" }} />)}
-                <button onClick={() => setAnchor(isAnchor ? null : o)}
+                <button onClick={() => { setAnchor(isAnchor ? null : o); onSelectAsset?.(o.asset_id); }}
                   title={`${o.metric_id} @ ${assetName(o.asset_id)} \u00b7 ${chainClass(o)} chain \u00b7 lag ${lag ?? "?"}d`}
-                  style={{ position: "absolute", top: 14, left: "50%", transform: "translateX(-50%)", width: isAnchor ? 14 : 10, height: isAnchor ? 14 : 10, borderRadius: "50%", background: chainColor(o), border: isAnchor ? "2px solid #fff" : "none", cursor: "pointer", padding: 0 }} />
+                  style={{ position: "absolute", top: 14, left: "50%", transform: "translateX(-50%)", width: isAnchor ? 14 : selected ? 12 : 10, height: isAnchor ? 14 : selected ? 12 : 10, borderRadius: "50%", background: chainColor(o), border: isAnchor ? "2px solid #fff" : selected ? "2px solid #00A86B" : "none", boxShadow: selected ? "0 0 6px #00A86B" : "none", cursor: "pointer", padding: 0 }} />
               </div>
             );
           })}

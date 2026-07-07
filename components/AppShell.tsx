@@ -9,6 +9,7 @@ export default function AppShell({
   assets, observations,
 }: { assets: any[]; observations: any[] }) {
   const [collapsed, setCollapsed] = useState(false);
+  const [selectedAsset, setSelectedAsset] = useState<string | null>(null);
 
   return (
     <div style={{ display: "flex", width: "100%", height: "calc(100vh - 48px)", position: "relative", overflow: "hidden" }}>
@@ -40,7 +41,7 @@ export default function AppShell({
               <SearchOverlay assets={assets} observations={observations} />
             </div>
           </div>
-          <Map assets={assets} observations={observations} collapsed={collapsed} />
+          <Map assets={assets} observations={observations} collapsed={collapsed} onSelectAsset={setSelectedAsset} />
           {collapsed && (
             <button onClick={() => setCollapsed(false)} title="Expand panel"
               style={{
@@ -57,7 +58,7 @@ export default function AppShell({
 
         {/* evidence bar: fixed slot at the bottom, always visible */}
         <div style={{ flexShrink: 0 }}>
-          <EvidenceBar assets={assets} observations={observations} />
+          <EvidenceBar assets={assets} observations={observations} selectedAsset={selectedAsset} onSelectAsset={setSelectedAsset} />
         </div>
       </div>
     </div>
