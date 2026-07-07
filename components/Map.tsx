@@ -167,9 +167,16 @@ export default function Map({
           ? `<table style="margin-top:6px;font-size:12px;border-collapse:collapse">${rows}</table>`
           : "");
 
+      // Outer wrapper is what Mapbox positions/transforms. Keep it clean:
+      // no animation, no scaling — so the globe projection can't make it drift.
       const el = document.createElement("div");
-      el.className = "pulse-dot";
       el.style.cursor = "pointer";
+      el.style.width = "12px";
+      el.style.height = "12px";
+      // Inner dot carries the visual + pulse animation, isolated from Mapbox's transform.
+      const dot = document.createElement("div");
+      dot.className = "pulse-dot";
+      el.appendChild(dot);
 
       const assetId = a.asset_id;
       el.addEventListener("click", (ev) => {
@@ -178,7 +185,7 @@ export default function Map({
         setJourneyAsset(assetId);
       });
 
-      new mapboxgl.Marker({ element: el, anchor: "center", rotationAlignment: "map", pitchAlignment: "map" })
+      new mapboxgl.Marker({ element: el, rotationAlignment: "map", pitchAlignment: "map" })
         .setLngLat([a.longitude, a.latitude])
         .setPopup(new mapboxgl.Popup({ offset: 12 }).setHTML(html))
         .addTo(map);
