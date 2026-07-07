@@ -178,7 +178,7 @@ export default function Map({
         setJourneyAsset(assetId);
       });
 
-      new mapboxgl.Marker({ element: el, anchor: "center" })
+      new mapboxgl.Marker({ element: el, anchor: "center", rotationAlignment: "map", pitchAlignment: "map" })
         .setLngLat([a.longitude, a.latitude])
         .setPopup(new mapboxgl.Popup({ offset: 12 }).setHTML(html))
         .addTo(map);
