@@ -81,42 +81,6 @@ An additive overlay (migrations 003–004) models the carbon-credit stakeholder 
 
 Plus a 16th terminal node, **The Vault (Retirement)**, where credits are retired and cannot be reused.
 
-## Data journey demo
-
-Ten synthetic US facilities, each with a real journey of varying completeness:
-
-| Asset | City | Journey |
-|---|---|---|
-| Houston Refinery Complex | Houston, TX | 100% (full) |
-| Gary Steel Works | Gary, IN | 100% (full) |
-| Detroit Auto Stamping | Detroit, MI | 93% |
-| Los Angeles Port Genset | Los Angeles, CA | 93% |
-| Baytown Chemical Plant | Baytown, TX | 86% |
-| Pittsburgh Coke Battery | Pittsburgh, PA | 86% |
-| Chicago Cement Terminal | Chicago, IL | 86% |
-| Cleveland Blast Furnace | Cleveland, OH | 64% |
-| Birmingham Foundry | Birmingham, AL | 64% |
-| Bakersfield Flare Site | Bakersfield, CA | 43% |
-
-## Repository layout
-
-```
-schema/seed/            # flat-file seed: assets.csv, observations.csv (the CSV backend)
-adapters/              # DataAdapter implementations (csv, supabase, postgres)
-migrations/            # additive numbered SQL (003 network, 004 journey bridge)
-data/demos/            # demo datasets (stakeholder-network CSVs)
-lib/adapters/          # read-only journey/graph loaders
-app/api/               # API routes (assets, journey/[assetId])
-components/            # Map, Dashboard, AppShell, EvidenceBar, SearchOverlay
-```
-
-## Running locally
-
-```bash
-npm install
-npm run dev        # http://localhost:3000
-```
-
 Set `NEXT_PUBLIC_MAPBOX_TOKEN` for the map. The default `DB_BACKEND=csv` needs no database — it reads `schema/seed/*.csv`.
 
 ---
