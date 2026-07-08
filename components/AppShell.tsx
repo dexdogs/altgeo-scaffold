@@ -57,9 +57,9 @@ export default function AppShell({
         </div>
 
         {/* evidence bar: floating strip, only when an asset is selected.
-            Right offset (376px) keeps it clear of the right-docked Data Journey panel. */}
+            Left tracks the sidebar (360 open / 52 collapsed); right clears the journey panel. */}
         {selectedAsset && (
-          <div style={{ position: "absolute", left: 0, right: 376, bottom: 0, zIndex: 40, boxShadow: "0 -8px 30px rgba(0,0,0,.6)" }}>
+          <div style={{ position: "fixed", left: collapsed ? 52 : 360, right: 376, bottom: 0, zIndex: 40, boxShadow: "0 -8px 30px rgba(0,0,0,.6)" }}>
             <EvidenceBar assets={assets} observations={observations} selectedAsset={selectedAsset} onSelectAsset={setSelectedAsset} />
           </div>
         )}

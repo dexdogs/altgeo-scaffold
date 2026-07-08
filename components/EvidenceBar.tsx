@@ -114,7 +114,7 @@ export default function EvidenceBar({
       </div>
 
       {anchor && (
-        <div style={{ position: "absolute", bottom: 84, left: 12, width: 460, maxHeight: 210, overflowY: "auto", background: "#0a0a0a", border: "1px solid #1f2937", borderRadius: 10, padding: "10px 14px", boxSizing: "border-box", zIndex: 30, boxShadow: "0 8px 30px rgba(0,0,0,.6)", color: "#e5e7eb" }}>
+        <div style={{ position: "absolute", bottom: 84, left: 0, right: 0, maxHeight: 210, overflowY: "auto", background: "#0a0a0a", borderTop: "1px solid #1f2937", padding: "10px 14px", boxSizing: "border-box", zIndex: 30, boxShadow: "0 -8px 30px rgba(0,0,0,.6)", color: "#e5e7eb" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
             <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
               <strong style={{ fontSize: 13 }}>Evidence trace &middot; {anchor.observation_id}</strong>
