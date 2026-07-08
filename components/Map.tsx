@@ -222,9 +222,9 @@ export default function Map({
   }, [journeyAsset]);
 
   const panelBox: React.CSSProperties = {
-    position: "absolute", bottom: 64, left: 16, zIndex: 60, width: 380,
-    maxHeight: "calc(100vh - 140px)", overflowY: "auto", background: "#0a0a0a",
-    border: "1px solid #1f2937", borderRadius: 10, padding: "18px 18px",
+    position: "absolute", top: 104, right: 16, zIndex: 60, width: 340,
+    maxHeight: "calc(100vh - 170px)", overflowY: "auto", background: "#0a0a0a",
+    border: "1px solid #1f2937", borderRadius: 10, padding: "16px 16px",
     boxShadow: "0 8px 30px rgba(0,0,0,.6)", color: "#e5e7eb",
     fontFamily: "system-ui, sans-serif",
   };
@@ -256,8 +256,8 @@ export default function Map({
         )}
       </div>
 
-      {/* bottom-left info + feedback tabs */}
-      <div style={{ position: "absolute", bottom: 16, left: 16, zIndex: 12, display: "flex", gap: 8 }}>
+      {/* top-right info + feedback tabs (below the location search box) */}
+      <div style={{ position: "absolute", top: 60, right: 16, zIndex: 12, display: "flex", gap: 8 }}>
         <button onClick={() => setPanel(panel === "info" ? null : "info")}
           style={{ padding: "8px 14px", fontSize: 13, fontWeight: 600, border: "1px solid #374151", borderRadius: 8, background: "#00A86B", color: "#052e1f", cursor: "pointer", boxShadow: "0 2px 10px rgba(0,0,0,.4)" }}>
           &#8505; Info

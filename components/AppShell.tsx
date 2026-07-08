@@ -56,9 +56,10 @@ export default function AppShell({
           )}
         </div>
 
-        {/* evidence bar: floating full-width strip, shown only when an asset is selected */}
+        {/* evidence bar: floating strip, only when an asset is selected.
+            Right offset (376px) keeps it clear of the right-docked Data Journey panel. */}
         {selectedAsset && (
-          <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, zIndex: 40, boxShadow: "0 -8px 30px rgba(0,0,0,.6)" }}>
+          <div style={{ position: "absolute", left: 0, right: 376, bottom: 0, zIndex: 40, boxShadow: "0 -8px 30px rgba(0,0,0,.6)" }}>
             <EvidenceBar assets={assets} observations={observations} selectedAsset={selectedAsset} onSelectAsset={setSelectedAsset} />
           </div>
         )}

@@ -1,4 +1,4 @@
-export const metadata = { title: "AltGeo Signal Monitor", description: "Geospatial alt-data scaffold" };
+export const metadata = { title: "AltGeo // dexdogs", description: "Geospatial alt-data scaffold" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -27,7 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           fontSize: 18,
           letterSpacing: 1,
         }}>
-          AltGeo Signal Monitor // dexdogs.earth
+          AltGeo // dexdogs
         </header>
         {children}
       </body>

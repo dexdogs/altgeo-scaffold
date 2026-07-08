@@ -71,7 +71,7 @@ export default function EvidenceBar({
 
   return (
     <div style={{ fontFamily: "system-ui, sans-serif", position: "relative" }}>
-      <div style={{ height: 112, background: "#0a0a0a", borderTop: "1px solid #1f2937", padding: "10px 16px", boxSizing: "border-box", position: "relative" }}>
+      <div style={{ height: 84, background: "#0a0a0a", borderTop: "1px solid #1f2937", padding: "8px 14px", boxSizing: "border-box", position: "relative" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
           <span style={{ fontSize: 11, color: "#9ca3af", textTransform: "uppercase", letterSpacing: 0.5 }}>Evidence chain &middot; freshness timeline</span>
           <span style={{ fontSize: 11, color: "#6b7280", display: "flex", gap: 8, alignItems: "center" }}>
@@ -114,7 +114,7 @@ export default function EvidenceBar({
       </div>
 
       {anchor && (
-        <div style={{ position: "absolute", bottom: 112, left: 0, right: 0, height: 300, background: "#0a0a0a", borderTop: "1px solid #1f2937", padding: "14px 18px", boxSizing: "border-box", zIndex: 30, boxShadow: "0 -8px 30px rgba(0,0,0,.5)", color: "#e5e7eb" }}>
+        <div style={{ position: "absolute", bottom: 84, left: 0, right: 0, height: 210, background: "#0a0a0a", borderTop: "1px solid #1f2937", padding: "10px 14px", boxSizing: "border-box", zIndex: 30, boxShadow: "0 -8px 30px rgba(0,0,0,.5)", color: "#e5e7eb" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
             <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
               <strong style={{ fontSize: 13 }}>Evidence trace &middot; {anchor.observation_id}</strong>
@@ -144,7 +144,7 @@ function DagView({ obs, assetName }: { obs: Obs; assetName: string }) {
   const edgeColor = chainColor(obs);
   const y = 90;
   return (
-    <svg width="100%" height="200" viewBox="0 0 1000 200" preserveAspectRatio="xMidYMid meet">
+    <svg width="100%" height="150" viewBox="0 0 1000 200" preserveAspectRatio="xMidYMid meet">
       <defs>
         <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
           <path d="M0,0 L8,4 L0,8 Z" fill={edgeColor} />
@@ -174,7 +174,7 @@ function SankeyView({ observations, anchor }: { observations: Obs[]; anchor: Obs
   const entries = Object.entries(bySource).sort((a, b) => b[1] - a[1]);
   let acc = 0;
   return (
-    <svg width="100%" height="200" viewBox="0 0 1000 200" preserveAspectRatio="xMidYMid meet">
+    <svg width="100%" height="150" viewBox="0 0 1000 200" preserveAspectRatio="xMidYMid meet">
       {entries.map(([src, n], i) => {
         const h = (n / total) * 170;
         const yTop = 15 + acc;
