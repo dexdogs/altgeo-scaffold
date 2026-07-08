@@ -231,7 +231,7 @@ export default function Map({
 
   return (
     <div style={{ width: "100%", height: "100%", position: "relative" }}>
-      <div className="location-search-box" style={{ position: "absolute", top: 16, right: 16, zIndex: 10, width: 300, fontFamily: "system-ui, sans-serif" }}>
+      <div className="location-search-box" style={{ position: "absolute", top: 56, right: 16, zIndex: 10, width: 300, fontFamily: "system-ui, sans-serif" }}>
         <div style={{ display: "flex", gap: 6 }}>
           <input
             value={q}
@@ -257,7 +257,7 @@ export default function Map({
       </div>
 
       {/* top-right info + feedback tabs (below the location search box) */}
-      <div style={{ position: "absolute", top: 60, right: 16, zIndex: 12, display: "flex", gap: 8 }}>
+      <div style={{ position: "absolute", top: 12, right: 16, zIndex: 25, display: "flex", gap: 8 }}>
         <button onClick={() => setPanel(panel === "info" ? null : "info")}
           style={{ padding: "8px 14px", fontSize: 13, fontWeight: 600, border: "1px solid #374151", borderRadius: 8, background: "#00A86B", color: "#052e1f", cursor: "pointer", boxShadow: "0 2px 10px rgba(0,0,0,.4)" }}>
           &#8505; Info
