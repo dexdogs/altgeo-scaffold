@@ -61,10 +61,17 @@ export default function Dashboard({
   const hidden = totalAssets - pinned;
   const totalObs = observations.length;
 
+  // Map each commodity metric to its family for the Domain mix chart.
+  const METRIC_FAMILY: Record<string, string> = {
+    carbon_credit_vcs: "Voluntary", carbon_credit_gs: "Voluntary",
+    rec: "Energy Attribute", eac: "Energy Attribute",
+    berdo_credit: "Compliance", eu_ets_allowance: "Compliance", ca_cap_trade: "Compliance",
+    co2e_tonnes: "Voluntary",
+  };
   const byMetric: Record<string, number> = {};
   for (const o of observations) {
-    const k = o.metric_id || DASH;
-    byMetric[k] = (byMetric[k] ?? 0) + 1;
+    const fam = METRIC_FAMILY[o.metric_id as string] || o.metric_id || DASH;
+    byMetric[fam] = (byMetric[fam] ?? 0) + 1;
   }
   const metricData = Object.entries(byMetric)
     .map(([metric, count]) => ({ metric, count }))

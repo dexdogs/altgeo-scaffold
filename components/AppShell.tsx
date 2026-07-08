@@ -27,7 +27,7 @@ export default function AppShell({
               border: "1px solid #374151", background: "#111827", color: "#f9fafb",
               fontSize: 13, lineHeight: 1, display: "flex", alignItems: "center", justifyContent: "center",
             }}>
-            &#8249;
+            &#9776;
           </button>
         )}
       </div>
@@ -51,15 +51,17 @@ export default function AppShell({
                 fontSize: 16, lineHeight: 1, display: "flex", alignItems: "center", justifyContent: "center",
                 boxShadow: "0 2px 10px rgba(0,0,0,.4)",
               }}>
-              &#8250;
+              &#9776;
             </button>
           )}
         </div>
 
-        {/* evidence bar: fixed slot at the bottom, always visible */}
-        <div style={{ flexShrink: 0 }}>
-          <EvidenceBar assets={assets} observations={observations} selectedAsset={selectedAsset} onSelectAsset={setSelectedAsset} />
-        </div>
+        {/* evidence bar: floating full-width strip, shown only when an asset is selected */}
+        {selectedAsset && (
+          <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, zIndex: 40, boxShadow: "0 -8px 30px rgba(0,0,0,.6)" }}>
+            <EvidenceBar assets={assets} observations={observations} selectedAsset={selectedAsset} onSelectAsset={setSelectedAsset} />
+          </div>
+        )}
       </div>
     </div>
   );

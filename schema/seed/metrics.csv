@@ -1,6 +1,8 @@
-metric_id,name,unit,description,direction
-co2e_stack,Stack CO2e flux,tCO2e/h,Satellite-derived stack emissions rate,higher_bad
-water_stress,Baseline water stress,ratio,Withdrawals / available supply,higher_bad
-grid_load,Grid load,MW,Instantaneous facility power draw,neutral
-heat_days,Extreme-heat days,days/yr,Days above local heat threshold,higher_bad
-pue,Power usage effectiveness,ratio,Data-center total power / IT power,higher_bad
+metric_id,family,unit,label
+carbon_credit_vcs,Voluntary,credits,Carbon Credit (VCS)
+carbon_credit_gs,Voluntary,credits,Carbon Credit (Gold Standard)
+rec,Energy Attribute,MWh,Renewable Energy Certificate
+eac,Energy Attribute,MWh,Energy Attribute Certificate
+berdo_credit,Compliance,tCO2e,BERDO Compliance Credit
+eu_ets_allowance,Compliance,tCO2e,EU ETS Allowance
+ca_cap_trade,Compliance,tCO2e,CA Cap-and-Trade

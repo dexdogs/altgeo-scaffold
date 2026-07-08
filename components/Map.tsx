@@ -222,8 +222,8 @@ export default function Map({
   }, [journeyAsset]);
 
   const panelBox: React.CSSProperties = {
-    position: "absolute", bottom: 64, left: 16, zIndex: 11, width: 380,
-    maxHeight: "70vh", overflowY: "auto", background: "#0a0a0a",
+    position: "absolute", bottom: 64, left: 16, zIndex: 60, width: 380,
+    maxHeight: "calc(100vh - 140px)", overflowY: "auto", background: "#0a0a0a",
     border: "1px solid #1f2937", borderRadius: 10, padding: "18px 18px",
     boxShadow: "0 8px 30px rgba(0,0,0,.6)", color: "#e5e7eb",
     fontFamily: "system-ui, sans-serif",
